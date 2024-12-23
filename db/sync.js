@@ -13,7 +13,8 @@ seq
 
 seq
   .sync({
-    force: true,
+    // 覆盖其他表
+    // force: true,
   })
   .then(() => {
     console.log("the table has been sync");

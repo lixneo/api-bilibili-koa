@@ -27,5 +27,10 @@ module.exports = {
   redisInfo: {
     all: `${REDIS_CONF[1]}:${REDIS_CONF[0]}`,
   },
-  corsOrigin: ENV.isPrd ? "https://cs100.fun" : "http://localhost:3001",
+  corsOrigin: ENV.isPrd ? "https://cs100.fun" : "http://localhost:3000",
+  adminInfo: {
+    username: "admin",
+    password: "admin",
+  },
+  cryptoSecret: "ashdiahis&32e_",
 };
