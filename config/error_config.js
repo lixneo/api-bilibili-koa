@@ -16,8 +16,12 @@ module.exports = {
       code: 1004,
       message: "密码长度不合法",
     },
-    SUCCESS: {
+    INVALID_INPUT: {
       code: 1005,
+      message: "非法输入",
+    },
+    SUCCESS: {
+      code: 0,
       message: "登录成功",
     },
   },

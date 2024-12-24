@@ -1,5 +1,5 @@
 const { adminInfo } = require("../config/config"),
-  { addAdmin } = require("../services/Admin"),
+  { addAdmin, login } = require("../services/Admin"),
   { returnInf, trimSpace, makeCrypto } = require("../libs/utils"),
   { LOGIN, CREATE } = require("../config/error_config");
 class Admin {
@@ -14,6 +14,13 @@ class Admin {
   }
   async LoginAction(ctx, next) {
     const { username, password } = ctx.request.body;
+    // console.log({ username, password });
+    console.log(ctx.request.body);
+
+    if (!username || !password) {
+      ctx.body = returnInf(LOGIN.INVALID_INPUT);
+      return;
+    }
     if (trimSpace(username) <= 0) {
       ctx.body = returnInf(LOGIN.INVALID_USERNAME_LENGTH);
       return;
@@ -22,6 +29,23 @@ class Admin {
       ctx.body = returnInf(LOGIN.INVALID_PASSWORD_LENGTH);
       return;
     }
+    const userInfo = {
+      username: trimSpace(username),
+      password: makeCrypto(trimSpace(password)),
+    };
+
+    const result = await login(userInfo);
+    if (result === 1001) {
+      ctx.body = returnInf(LOGIN.USER_NOT_EXIST);
+      return;
+    }
+
+    if (result === 1002) {
+      ctx.body = returnInf(LOGIN.PASSWORD_ERROR);
+      return;
+    }
+
+    ctx.body = returnInf(LOGIN.SUCCESS, result);
   }
 }
 
