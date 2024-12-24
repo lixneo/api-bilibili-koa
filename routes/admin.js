@@ -3,5 +3,7 @@ const router = require("koa-router")(),
 
 router.get("/create_admin", adminController.createAdmin);
 router.post("/login", adminController.LoginAction);
+router.post("/logout", adminController.LogoutAction);
+router.post("/login_check", adminController.LoginCheckAction);
 
 module.exports = router;

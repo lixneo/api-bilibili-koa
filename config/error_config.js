@@ -20,6 +20,18 @@ module.exports = {
       code: 1005,
       message: "非法输入",
     },
+    LOGIN_STATUS_ERROR: {
+      code: 1006,
+      message: "登录状态错误",
+    },
+    LOGIN_STATUS: {
+      code: 1007,
+      message: "登录中",
+    },
+    LOGOUT_SUCCESS: {
+      code: 0,
+      message: "退出登录成功",
+    },
     SUCCESS: {
       code: 0,
       message: "登录成功",

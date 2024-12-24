@@ -51,6 +51,17 @@ class Admin {
 
     ctx.body = returnInf(LOGIN.SUCCESS, ctx.session.userInfo);
   }
+  async LogoutAction(ctx, next) {
+    delete ctx.session.userInfo;
+    ctx.body = returnInf(LOGIN.LOGOUT_SUCCESS);
+  }
+  async LoginCheckAction(ctx, next) {
+    if (ctx.session && ctx.session.userInfo) {
+      ctx.body = returnInf(LOGIN.LOGIN_STATUS);
+    } else {
+      ctx.body = returnInf(LOGIN.LOGIN_STATUS_ERROR);
+    }
+  }
 }
 
 module.exports = new Admin();
