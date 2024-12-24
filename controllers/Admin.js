@@ -45,7 +45,11 @@ class Admin {
       return;
     }
 
-    ctx.body = returnInf(LOGIN.SUCCESS, result);
+    if (!ctx.session.userInfo) {
+      ctx.session.userInfo = result;
+    }
+
+    ctx.body = returnInf(LOGIN.SUCCESS, ctx.session.userInfo);
   }
 }
 

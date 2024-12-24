@@ -39,6 +39,7 @@ app.use(
     origin: function (ctx) {
       return corsOrigin;
     },
+    credentials: true,
   })
 );
 
