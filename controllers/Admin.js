@@ -3,8 +3,14 @@ const { adminInfo } = require("../config/config"),
   { returnInf, trimSpace, makeCrypto } = require("../libs/utils"),
   { LOGIN, CREATE } = require("../config/error_config");
 class Admin {
+  async demodemo(ctx, next) {
+    ctx.body = makeCrypto("admin");
+  }
   async createAdmin(ctx, next) {
+    console.log("adminInfo.password",adminInfo.password);
     adminInfo.password = makeCrypto(adminInfo.password);
+    console.log("adminInfo.password",adminInfo.password);
+    
     const result = await addAdmin(adminInfo);
     if (result) {
       ctx.body = returnInf(CREATE.SUCCESS);

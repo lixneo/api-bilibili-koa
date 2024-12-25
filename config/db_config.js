@@ -11,7 +11,8 @@ module.exports = {
         idle: 10000,
       },
     },
-    conf: ["txclass", "root", ENV.isPrd ? "12345678" : "root"],
+    // conf: ["txclass", "root", ENV.isPrd ? "12345678" : "root"],
+    conf: ["txclass", "root", ENV.isPrd ? "12345678" : "shuai123"],
   },
   REDIS_CONF: ["6379", "127.0.0.1"],
 };
