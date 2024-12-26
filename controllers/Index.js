@@ -1,5 +1,7 @@
 const { redisGet, redisSet } = require("../libs/redisClient");
 const { getCourses } = require("../services/Course");
+const { API } = require("../config/error_config");
+const { returnInf } = require("../libs/utils");
 class Index {
   async index(ctx, next) {
     //渲染页面
@@ -8,8 +10,17 @@ class Index {
 
   async getCourseData(ctx, next) {
     const data = await getCourses();
-    ctx.body = data;
+    ctx.body = data
+      ? returnInf(API.RETURN_SUCCESS, data)
+      : returnInf(API.RETURN_ERROR);
   }
+
+  async postDataDemo(ctx, next) {
+    console.log("-------------------------------",ctx.request.body);
+
+    ctx.body = returnInf(API.RETURN_SUCCESS);
+  }
+
   async setRedisData(ctx, next) {
     const sess = ctx.session;
 
@@ -27,6 +38,7 @@ class Index {
     //渲染页面
     // await ctx.render("set-redis-data");
   }
+
   async getRedisData(ctx, next) {
     redisGet("txclass.sess6MrilfazOVEmuDcKBnhOg8vChNq4nUos").then((res) => {
       console.log(res);

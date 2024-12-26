@@ -7,11 +7,12 @@ class Admin {
     ctx.body = makeCrypto("admin");
   }
   async createAdmin(ctx, next) {
-    console.log("adminInfo.password",adminInfo.password);
-    adminInfo.password = makeCrypto(adminInfo.password);
-    console.log("adminInfo.password",adminInfo.password);
-    
-    const result = await addAdmin(adminInfo);
+    let password = makeCrypto(adminInfo.password);
+
+    const result = await addAdmin({
+      password,
+      username: adminInfo.username,
+    });
     if (result) {
       ctx.body = returnInf(CREATE.SUCCESS);
     } else {

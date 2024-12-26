@@ -59,4 +59,14 @@ module.exports = {
       message: "注册失败",
     },
   },
+  API: {
+    RETURN_SUCCESS: {
+      code: 0,
+      message: "请求成功",
+    },
+    RETURN_ERROR: {
+      code: 3001,
+      message: "请求失败",
+    },
+  },
 };
